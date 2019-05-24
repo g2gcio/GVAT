@@ -32,6 +32,7 @@ input/
 *.xlsx
 *.txt
 *.exe
+test.py
 
 
 # Visual Studio 2015/2017 cache/options directory

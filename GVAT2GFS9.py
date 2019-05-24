@@ -7,7 +7,8 @@ import os
 #
 DEBUGmode = 1 # Verbose 
 DEBUGmode = 0 # Quiet
-PATH = 'C:\\Work\\20190506_JET'
+#DATAPATH = 'C:\\Work\\20190506_JET'
+DATAPATH = '\\\\SHAS199007\\VATReturnfile$'
 SCOPE_SH = 'SH_'
 SCOPE_BJ = 'BJ_'
 RESULT = 'JET'
@@ -33,6 +34,12 @@ Jet_index_New = ['Business Unit','Operating Unit','Account','Product','Sub-Produ
 #Reading mapping tables
 #============================================
 #
+if os.path.exists(DATAPATH):
+	print("Reading all files from : "+ DATAPATH)
+else:
+	print("Error reading files from directory: "+ DATAPATH)
+	exit()
+
 try:
 	f = open(ACCOUNTMAPPING, "r")
 	print("Reading Account Mapping file : " + ACCOUNTMAPPING)
@@ -70,7 +77,7 @@ Jetdf = pd.DataFrame(columns = Jet_index)
 
 File_List = []
 
-for r, d, f in os.walk(PATH):
+for r, d, f in os.walk(DATAPATH, level=1):
 	for file in f:
 		if SCOPE_SH in file:
 			File_List.append(os.path.join(r, file))
